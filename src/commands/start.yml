@@ -1,0 +1,14 @@
+description: >
+  Install nebula
+
+parameters:
+  config-file:
+    type: string
+    default: nebula.yml
+    description: Path to the nebula config file
+
+steps:
+  - run:
+      name: Start nebula
+      command: |
+        sudo nebula -config << parameters.config-file >>

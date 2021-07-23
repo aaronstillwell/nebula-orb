@@ -1,41 +1,35 @@
-# Orb Project Template
+# Nebula orb
 
-[![CircleCI Build Status](https://circleci.com/gh/aaronstillwell/nebula-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/aaronstillwell/nebula-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/aaronstillwell/nebula.svg)](https://circleci.com/orbs/registry/orb/aaronstillwell/nebula) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/aaronstillwell/nebula-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+Easily access your nebula network from a CircleCI job. 
 
+## Requirements
 
+* This orb currently only supports Linux.
+* Much like a VPN, nebula needs the `NET_CAP_ADMIN` capability, therefore nebula needs to be used on a machine based job. Docker based jobs are not able to run nebula.
+  
+## Usage
 
-A starter template for orb projects. Build, test, and publish orbs automatically on CircleCI with [Orb-Tools](https://circleci.com/orbs/registry/orb/circleci/orb-tools).
+```
+version: 2.1
 
-Additional READMEs are available in each directory.
+orbs:
+  nebula: aaronstillwell/nebula@0.1.0
 
-
-
-## Resources
-
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/aaronstillwell/nebula-orb) - The official registry page of this orb for all versions, executors, commands, and jobs described.
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using and creating CircleCI Orbs.
-
-### How to Contribute
-
-We welcome [issues](https://github.com/aaronstillwell/nebula-orb/issues) to and [pull requests](https://github.com/aaronstillwell/nebula-orb/pulls) against this repository!
-
-### How to Publish
-* Create and push a branch with your new features.
-* When ready to publish a new production version, create a Pull Request from _feature branch_ to `master`.
-* The title of the pull request must contain a special semver tag: `[semver:<segment>]` where `<segment>` is replaced by one of the following values.
-
-| Increment | Description|
-| ----------| -----------|
-| major     | Issue a 1.0.0 incremented release|
-| minor     | Issue a x.1.0 incremented release|
-| patch     | Issue a x.x.1 incremented release|
-| skip      | Do not issue a release|
-
-Example: `[semver:major]`
-
-* Squash and merge. Ensure the semver tag is preserved and entered as a part of the commit message.
-* On merge, after manual approval, the orb will automatically be published to the Orb Registry.
-
-
-For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).
+jobs:
+  deploy:
+    machine:
+      image:
+    steps:
+      - checkout
+      - nebula/install-and-start
+      # Nebula should now be running
+      - run:
+          name: Ping nebula node
+          command: ping 192.168.100.1
+      
+workflows:
+  deploy:
+    jobs:
+      - deploy
+```
 

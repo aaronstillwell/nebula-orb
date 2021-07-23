@@ -1,0 +1,49 @@
+description: >
+  Install certificates from base64 encoded environment variables
+
+parameters:
+  version:
+    type: string
+    default: "1.4.0"
+    description: "Version of nebula to install"
+  ca-var:
+    type: env_var_name
+    default: NEBULA_CA
+    description: Base64 encoded nebula ca
+  ca-file-path:
+    type: string
+    default: nebula-ca.crt
+    description: Path to store the nebula CA on disk
+  cert-var:
+    type: env_var_name
+    default: NEBULA_CRT
+    description: Base64 encoded nebula certificate
+  cert-file-path:
+    type: string
+    default: nebula.crt
+    description: Path to store the nebula cert on disk
+  key-var:
+    type: env_var_name
+    default: NEBULA_KEY
+    description: Base64 encoded nebula key
+  key-file-path:
+    type: string
+    default: nebula.key
+    description: Path to store the nebula key on disk
+  config-file:
+    type: string
+    default: nebula.yml
+    description: Path to the nebula config file
+
+steps:
+  - install:
+      version: << parameters.version >>
+  - install-certs:
+      ca-var: << parameters.ca-var >>
+      ca-file-path: << parameters.ca-file-path >>
+      cert-var: << parameters.cert-var >>
+      cert-file-path: << parameters.cert-file-path >>
+      key-var: << parameters.key-var >>
+      key-file-path: << parameters.key-file-path >>
+  - start:
+      config-file: << parameters.config-file >>

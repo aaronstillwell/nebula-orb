@@ -1,0 +1,17 @@
+description: >
+  Install nebula
+
+parameters:
+  version:
+    type: string
+    default: "1.4.0"
+    description: "Version of nebula to install"
+
+steps:
+  - run:
+      name: Download nebula << parameters.version >>
+      command: |
+        wget https://github.com/slackhq/nebula/releases/download/v<< parameters.version >>/nebula-linux-amd64.tar.gz
+        tar -zxvf nebula-linux-amd64.tar.gz
+        mv nebula /etc/nebula
+        mv nebula-cert /etc/nebula-cert

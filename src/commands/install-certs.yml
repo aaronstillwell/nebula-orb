@@ -1,0 +1,36 @@
+description: >
+  Install certificates from base64 encoded environment variables
+
+parameters:
+  ca-var:
+    type: env_var_name
+    default: NEBULA_CA
+    description: Base64 encoded nebula ca
+  ca-file-path:
+    type: string
+    default: nebula-ca.crt
+    description: Path to store the nebula CA on disk
+  cert-var:
+    type: env_var_name
+    default: NEBULA_CRT
+    description: Base64 encoded nebula certificate
+  cert-file-path:
+    type: string
+    default: nebula.crt
+    description: Path to store the nebula cert on disk
+  key-var:
+    type: env_var_name
+    default: NEBULA_KEY
+    description: Base64 encoded nebula key
+  key-file-path:
+    type: string
+    default: nebula.key
+    description: Path to store the nebula key on disk
+
+steps:
+  - run:
+      name: Install certificates
+      command: |
+        echo ${<< parameters.ca-var >>} | base64 -d > << parameters.ca-file-path >>
+        echo ${<< parameters.cert-var >>} | base64 -d > << parameters.cert-file-path >>
+        echo ${<< parameters.key-var >>} | base64 -d > << parameters.key-file-path >>
