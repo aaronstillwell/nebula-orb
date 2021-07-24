@@ -1,0 +1,29 @@
+description: >
+  Install and connect to a nebula network with 1 command
+
+usage:
+  version: 2.1
+  orbs:
+    nebula: aaronstillwell/nebula@0.1.0
+  jobs:
+    nebula-job:
+      machine:
+        image: ubuntu-2004:202010-01
+      steps:
+        - checkout
+        - nebula/install:
+            version: "1.4.0"
+        - install-certs-from-env:
+            ca-var: NEBULA_CA_CONTENT
+            cert-var: NEBULA_CERT_CONTENT
+            key-var: NEBULA_KEY_CONTENT
+        - nebula/start:
+            config-file: .circleci/nebula.yml
+        - run:
+            name: Access nebula network
+            command: |
+              curl 192.168.100.5/my-endpoint
+  workflows:
+    use-my-orb:
+      jobs:
+        - nebula-job
