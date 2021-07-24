@@ -15,7 +15,7 @@ Easily access your [nebula](https://github.com/slackhq/nebula) network from a Ci
 version: 2.1
 
 orbs:
-  nebula: aaronstillwell/nebula@0.1.0
+  nebula: aaronstillwell/nebula@0.1.1
 
 jobs:
   deploy:

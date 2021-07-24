@@ -12,3 +12,4 @@ steps:
       name: Start nebula
       command: |
         sudo nebula -config << parameters.config-file >>
+      background: true
