@@ -6,6 +6,9 @@ parameters:
     type: string
     default: "1.4.0"
     description: "Version of nebula to install"
+  install-dir:
+    type: string
+    default: "/bin"
 
 steps:
   - run:
@@ -13,5 +16,5 @@ steps:
       command: |
         wget https://github.com/slackhq/nebula/releases/download/v<< parameters.version >>/nebula-linux-amd64.tar.gz
         tar -zxvf nebula-linux-amd64.tar.gz
-        sudo mv nebula /etc/nebula
-        sudo mv nebula-cert /etc/nebula-cert
+        sudo mv nebula << parameters.install-dir >>/nebula
+        sudo mv nebula-cert << parameters.install-dir >>/nebula-cert
