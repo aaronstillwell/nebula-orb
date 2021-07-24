@@ -13,5 +13,5 @@ steps:
       command: |
         wget https://github.com/slackhq/nebula/releases/download/v<< parameters.version >>/nebula-linux-amd64.tar.gz
         tar -zxvf nebula-linux-amd64.tar.gz
-        mv nebula /etc/nebula
-        mv nebula-cert /etc/nebula-cert
+        sudo mv nebula /etc/nebula
+        sudo mv nebula-cert /etc/nebula-cert
