@@ -38,7 +38,7 @@ parameters:
 steps:
   - install:
       version: << parameters.version >>
-  - install-certs:
+  - install-certs-from-env:
       ca-var: << parameters.ca-var >>
       ca-file-path: << parameters.ca-file-path >>
       cert-var: << parameters.cert-var >>
