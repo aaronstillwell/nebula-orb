@@ -1,6 +1,8 @@
 # Nebula orb
 
-Easily access your nebula network from a CircleCI job. 
+[![CircleCI Build Status](https://circleci.com/gh/aaronstillwell/nebula-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/aaronstillwell/nebula-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/aaronstillwell/nebula.svg)](https://circleci.com/orbs/registry/orb/aaronstillwell/nebula) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/aaronstillwell/nebula-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+
+Easily access your [nebula](https://github.com/slackhq/nebula) network from a CircleCI job. 
 
 ## Requirements
 
@@ -18,14 +20,14 @@ orbs:
 jobs:
   deploy:
     machine:
-      image:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
       - nebula/install-and-start
       # Nebula should now be running
       - run:
-          name: Ping nebula node
-          command: ping 192.168.100.1
+          name: Access resources on nebula network
+          command: curl 192.168.100.5/my-endpoint
       
 workflows:
   deploy:
