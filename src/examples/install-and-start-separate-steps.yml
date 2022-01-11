@@ -12,7 +12,7 @@ usage:
       steps:
         - checkout
         - nebula/install:
-            version: "1.4.0"
+            version: "1.5.2"
         - install-certs-from-env:
             ca-var: NEBULA_CA_CONTENT
             cert-var: NEBULA_CERT_CONTENT

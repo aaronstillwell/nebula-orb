@@ -4,7 +4,7 @@ description: >
 parameters:
   version:
     type: string
-    default: "1.4.0"
+    default: "1.5.2"
     description: "Version of nebula to install"
   install-dir:
     type: string
